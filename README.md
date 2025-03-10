@@ -3,8 +3,9 @@
 ## Introduction
 The topic of out of source builds is often not explained simply and examples tend to get overly complex quickly. I have tried to create the most minimal out of source CMake 'hello world' example in my BasicOutOfSourceCMake. 
 
-This version expands that work by compiling sub-directories in the source into subprojects. Those subprojects load into Visual Stuidio as seperate solutions. It also sets up dependencies between sub-solutions and the main build project. It does this by compiling the sub-projects into static libs. This gives several benefits such as being able to compile just that sub-project independent of all the other code. This is much more like what a real development environment would work like. This example works with both Visual Studio and Linux. 
+This version expands that work by compiling sub-directories in the source into subprojects. Those subprojects load into Visual Stuidio as seperate solutions. It also sets up dependencies between sub-solutions and the main build project. It does this by compiling the sub-projects into static libs. This gives several benefits such as being able to compile just that sub-project independent of all the other code. This is much more like what a real development environment would work like. 
 
+This example works with in both Visual Studio 2022 on Windows and Linux (tested with latest CMAKE on Ubuntu 24.04) - but it should work on many other configurations and versions as well. I've tried to keep the code to the most simple and portable as possible.
 
 ## Out of Source Builds
 In case you're not familiar with out of source builds, traditional build systems tend to compile their intermediate binary files (obj files, libs, executables, dlls, etc) right next to their source files. This means binary and source files are mixed all over in the source tree. Out of source builds, however, put all binary and intermediate files in their own directory (often a bin/ directory) and keep them all out of the source (often src/) directory.  
@@ -70,3 +71,12 @@ If you opt for `cmake -H. -Bbin`, `-H.` tells cmake where to find CMakeLists.txt
 - Versions of CMake past 3.13 support parameters that can help you make out-of-source builds more directly (without using the build script) by using the flags:
 `cmake -H. -Bbuild`
 
+## Links
+- Subprojects in CMAKE
+  - https://cprieto.com/posts/2017/03/cmake-and-libraries-part-1.html
+  - https://stackoverflow.com/questions/63137936/cmake-project-with-independent-subprojects
+  - https://stackoverflow.com/questions/21163188/most-simple-but-complete-cmake-example
+- Change the startup project in CMAKE: https://stackoverflow.com/questions/7304625/how-do-i-change-the-startup-project-of-a-visual-studio-solution-via-cmake
+- Specifying files in the include/ directories of CMAKE projects: https://stackoverflow.com/questions/13703647/how-to-properly-add-include-directories-with-cmake
+- ALL_BUILD and ZERO_CHECK project: https://stackoverflow.com/questions/27175754/what-are-all-build-and-zero-check-and-do-i-need-them
+- Debug and release build specifications with CMAKE: https://stackoverflow.com/questions/1629779/msbuild-builds-defaults-to-debug-configuration
